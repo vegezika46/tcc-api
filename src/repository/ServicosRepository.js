@@ -12,3 +12,46 @@ export async function inserirServicos(Servico) {
     
     return info.insertId;
 }
+
+
+
+export async function consultarServicos() {
+    const comando = `
+        select id_trabalho        id,
+               ds_corte           corte,
+               bt_sombrancelha    sombrancelha,
+               bt_progressiva     progressiva,
+               bt_hidratação      hidratação,
+               bt_luzes           luzes,
+               ds_barba           barba,
+               vl_valor           valor
+          from tb_serviços
+    `;
+
+    let resposta = await con.query(comando);
+    let registros = resposta[0];
+
+    return registros;
+}
+
+
+
+
+export async function alterarServico(ServicosRepository) {
+    const comando = `
+         update id_trabalhos
+            set ds_corte,
+                bt_sombrancelha,
+                bt_progressiva,
+                bt_hidratação,
+                bt_luzes,
+                ds_barba,
+                vl_valor
+            where tb_serviços = ?;
+    `
+
+    let resposta = await con.query(comando, [DataHora.dt_hora, DataHora.dt_dia])
+    let info = resposta[0];
+
+    return info.affectedRows;
+}

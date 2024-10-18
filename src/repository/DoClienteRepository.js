@@ -12,3 +12,23 @@ export async function inserirCliente(pessoa) {
     
     return info.insertId;
 }
+
+
+
+export async function consultarCliente() {
+    const comando = `
+        select id_pessoa            id,
+               nm_pessoa_cliente    nome,
+               ds_cep               cep,
+               ds_rua               rua,
+               ds_bairro            bairro,
+               nr_numero            numero,
+               ds_email             email
+          from tb_area_cliente
+    `;
+
+    let resposta = await con.query(comando);
+    let registros = resposta[0];
+
+    return registros;
+}
