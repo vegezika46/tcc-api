@@ -1,13 +1,13 @@
 import con from "./connection.js";
 
 
-export async function inserirServicos(Servico) {
+export async function inserirServicos(servico) {
     const comando = `
         insert into tb_serviços (ds_corte, bt_sombrancelha, bt_progressiva, bt_hidratação, bt_luzes, ds_barba, vl_valor) 
 					        values (?, ?, ?, ?, ?, ?, ?)
     `;
     
-    let resposta = await con.query(comando, [pessoa.nm_nome_cliente, pessoa.ds_cep, pessoa.ds_rua, pessoa.ds_bairro, pessoa.nr_numero, pessoa.ds_email])
+    let resposta = await con.query(comando, [servico.ds_corte, servico.bt_sombrancelha, servico.progressiva, servico.hidratação, servico.bt_luzes, servico.vl_valor])
     let info = resposta[0];
     
     return info.insertId;
@@ -37,7 +37,7 @@ export async function consultarServicos() {
 
 
 
-export async function alterarServico(ServicosRepository) {
+export async function alterarServico(servico) {
     const comando = `
          update id_trabalhos
             set ds_corte,
@@ -50,7 +50,7 @@ export async function alterarServico(ServicosRepository) {
             where tb_serviços = ?;
     `
 
-    let resposta = await con.query(comando, [DataHora.dt_hora, DataHora.dt_dia])
+    let resposta = await con.query(comando, [servico.ds_corte, servico.bt_sombrancelha, servico.progressiva, servico.hidratação, servico.bt_luzes, servico.ds_barba, servico.vl_valor])
     let info = resposta[0];
 
     return info.affectedRows;

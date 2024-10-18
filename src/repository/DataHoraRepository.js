@@ -30,7 +30,7 @@ export async function consultarDataHora() {
 
 
 
-export async function alterarDataHora(DataHoraRepository) {
+export async function alterarDataHora(DataHora) {
     const comando = `
          update tb_data_hora
             set dt_hora,
