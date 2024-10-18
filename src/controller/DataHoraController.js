@@ -8,7 +8,5 @@ endpoints.post('/marcardata', async (req, resp) => {
 
     let id = await inserirDataHora(DataHora);
 
-    resp.send({
-        id: id
-    })
+    resp.send({ id: id })
 })
