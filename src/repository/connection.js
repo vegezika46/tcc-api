@@ -1,7 +1,8 @@
 import { log } from 'console';
-import mysql from 'mysql2/promise';
+import mysql2 from 'mysql2/promise';
+import "dotenv/config"
 
-let con = await mysql.createConnection({
+let con = await mysql2.createConnection({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PWD,
